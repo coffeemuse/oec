@@ -103,6 +103,9 @@ class Terminal:
         for chunk in chunks[1:]:
             commands.append(create_subsequent(chunk))
 
+        if len(commands) > 1 and logger.isEnabledFor(logging.DEBUG):
+            logger.debug(f'Jumbo write split into {len(commands)}')
+
         return self.execute(commands)
 
 class UnsupportedTerminalError(Exception):

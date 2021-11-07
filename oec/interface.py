@@ -22,14 +22,9 @@ class InterfaceWrapper:
 
         self.timeout = 0.1
 
-        self.jumbo_write_strategy = _get_jumbo_write_strategy()
-        self.jumbo_write_max_length = None
-
-        if self.legacy_firmware_detected and self.jumbo_write_strategy is None:
-            self.jumbo_write_strategy = 'split'
-            self.jumbo_write_max_length = 1024
-
-            _print_i1_jumbo_write_notice(self.jumbo_write_max_length)
+        print('setting jumbo write strategy to split/32')
+        self.jumbo_write_strategy = 'split'
+        self.jumbo_write_max_length = 32
 
     def __getattr__(self, attr):
         return getattr(self.interface, attr)
