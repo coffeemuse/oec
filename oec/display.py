@@ -180,7 +180,7 @@ class Display:
     def _eab_write_alternate(self, data):
         # The EAB_WRITE_ALTERNATE command data must be split so that the two bytes
         # do not get separated, otherwise the write will be incorrect.
-        self.terminal.execute_jumbo_write(data, lambda chunk: EABWriteAlternate(self.eab_address, chunk), Data, -2)
+        self.terminal.execute_jumbo_write(data, lambda chunk: EABWriteAlternate(self.eab_address, chunk), lambda chunk: EABWriteAlternate(self.eab_address, chunk), -2)
 
 def _split_address(address):
     if address is None:
