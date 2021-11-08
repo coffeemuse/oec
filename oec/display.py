@@ -121,8 +121,8 @@ class Display:
         if not self.has_eab:
             raise RuntimeError('No EAB feature')
 
-        #print('Trying LOAD_MASK...')
-        #self.terminal.execute(LoadMask(mask))
+        print('Trying LOAD_MASK...')
+        self.terminal.execute(LoadMask(mask))
 
         print('Trying EAB_LOAD_MASK (0x05)...')
         self.terminal.execute(HackEABLoadMask(self.eab_address, mask))
