@@ -11,6 +11,20 @@ from sortedcontainers import SortedSet
 from coax import ReadAddressCounterHi, ReadAddressCounterLo, LoadAddressCounterHi, \
                  LoadAddressCounterLo, WriteData, EABLoadMask, EABWriteAlternate, Data
 
+from coax import LoadMask
+from coax.interface import FrameFormat
+from coax.protocol import WriteCommand, pack_command_word
+
+class HackEABLoadMask(WriteCommand):
+    def __init__(self, feature_address, mask):
+        self.feature_address = feature_address
+        self.mask = mask
+
+    def pack_outbound_frame(self):
+        command_word = (self.feature_address << 6) | (0x05 << 2) | 0x1
+
+        return (FrameFormat.WORD_DATA, command_word, [self.mask])
+
 # Does not include the status line row.
 Dimensions = namedtuple('Dimensions', ['rows', 'columns'])
 
@@ -107,7 +121,14 @@ class Display:
         if not self.has_eab:
             raise RuntimeError('No EAB feature')
 
-        self.terminal.execute(EABLoadMask(self.eab_address, mask))
+        #print('Trying LOAD_MASK...')
+        #self.terminal.execute(LoadMask(mask))
+
+        print('Trying EAB_LOAD_MASK (0x05)...')
+        self.terminal.execute(HackEABLoadMask(self.eab_address, mask))
+
+        #print('Trying EAB_LOAD_MASK (0x06)...')
+        #self.terminal.execute(EABLoadMask(self.eab_address, mask))
 
     def toggle_cursor_blink(self):
         self.terminal.control.cursor_blink = not self.terminal.control.cursor_blink
