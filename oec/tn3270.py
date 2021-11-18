@@ -70,7 +70,8 @@ class TN3270Session(Session):
 
         (rows, columns) = self.terminal.display.dimensions
 
-        if self.terminal.display.has_eab:
+        #if self.terminal.display.has_eab:
+        if True:
             supported_colors = 8
             supported_highlights = [Highlight.BLINK, Highlight.REVERSE, Highlight.UNDERSCORE]
         else:
@@ -161,7 +162,8 @@ class TN3270Session(Session):
 
     def _connect_host(self):
         # We will pretend a 3279 without EAB is a 3278.
-        if self.terminal.display.has_eab:
+        #if self.terminal.display.has_eab:
+        if True:
             type = '3279'
         else:
             type = '3278'
