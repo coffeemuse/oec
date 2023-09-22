@@ -1,4 +1,4 @@
-# oec
+# oec - CoffeeMuse Dev PlayGround
 
 IBM 3270 terminal controller - a replacement for the IBM 3174.
 
@@ -10,6 +10,8 @@ to the Hercules emulator.
 
 For background on this project, IBM 3270 type terminals and controllers, see
 _[Building an IBM 3270 terminal controller](https://ajk.me/building-an-ibm-3270-terminal-controller)_.
+
+This fork/branch is for my personal experimentation and not officially supported.
 
 ## Features
 
