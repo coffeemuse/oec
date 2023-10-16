@@ -351,7 +351,7 @@ class Controller:
             terminal.display.toggle_cursor_reverse()
         elif key == Key.CLICKER:
             terminal.keyboard.toggle_clicker()
-        elif scan_code == 1:  # Left group of keys, bottom left on the 122 key keyboard. (Unlabled on my keyboard) 
+        elif scan_code == 118:  # Key just above Numpad 7 on the 122 key keyboard. (Unlabled on my keyboard)
             self._handle_device_lost(terminal)
         elif device_address in self.sessions:
             (session_state, session) = self.sessions[device_address]
